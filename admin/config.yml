@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: your-username/your-repo-name
+  repo: ockci/hankiock-portfolio
   branch: main
 
 media_folder: "uploads"
