@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출연영상 - Han Ki-ock 한기옥</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a class="logo" href="index.html">Han Ki-ock</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="header-right" id="headerRight">
+                <nav>
+                    <ul>
+                        <li><a href="index.html" onclick="closeMobileMenu()">소개</a></li>
+                        <li><a href="films.html" onclick="closeMobileMenu()">출연영상</a></li>
+                        <li><a href="experience.html" onclick="closeMobileMenu()">경력사항</a></li>
+                        <li><a href="profile.html" onclick="closeMobileMenu()">프로필</a></li>
+                    </ul>
+                </nav>
+                <button class="contact-btn" onclick="openDownloadModal(); closeMobileMenu();">프로필 다운로드 ↓</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Films Section -->
+    <section class="video-section" style="margin-top: 100px;">
+        <div class="container">
+            <div class="section-header">
+                <h2>출연 영상 <span>*</span></h2>
+            </div>
+            <p style="margin-bottom: 60px; color: #666;">🎬 다운로드 가능한 영상 | 🔗 유튜브 외부 링크</p>
+            
+            <!-- Video 1 - 다운로드 가능 -->
+            <!-- <div class="video-container" style="margin-bottom: 60px;">
+                <div class="video-player video-download">
+                    <div class="video-badge">🎬 출연영상 모음</div>
+                    <div class="rec-badge">다운로드 가능</div>
+                    <video id="video1" poster="videos/video1-thumb.jpg" controls>
+                        <source src="videos/video1.mp4" type="video/mp4">
+                    </video>
+                    <button class="download-video-btn" onclick="downloadVideo('videos/video1.mp4')">영상 다운로드 ↓</button>
+                </div>
+                <div class="video-info">
+                    <h4>웹드라마 "우리 연애 시뮬레이션" - 여대생역</h4>
+                    <div class="duration">로컬 영상 (다운로드 가능)</div>
+                    <p>웹드라마에서 여대생 역을 맡아 연기했습니다.</p>
+                    <p>일상 속 자연스러운 모습을 표현했습니다.</p>
+                </div>
+            </div> -->
+
+            <!-- <div class="video-container" style="margin-bottom: 60px;">
+                <div class="video-player video-download">
+                    <div class="video-badge">🎬 출연영상 모음</div>
+                    <div class="rec-badge">다운로드 가능</div>
+                    <video id="video3" poster="videos/video1-thumb.jpg" controls>
+                        <source src="videos/video1.mp4" type="video/mp4">
+                    </video>
+                    <button class="download-video-btn" onclick="downloadVideo('videos/video1.mp4')">영상 다운로드 ↓</button>
+                </div>
+                <div class="video-info">
+                    <h4>mbc 내일 | 우리연애시뮬레이션 | 하이쿠키 | 종말의 바보</h4>
+                    <div class="duration">MBC 내일 - 경미려역</div>
+                    <p>넷플릭스 종말의 바보 - 피해소녀역</p>
+                    <p>LG u+ 하이쿠키 김윤아역 | 우리 연애 시뮬레이션</p>
+                </div>
+            </div> -->
+
+            <!-- Video 2 - 유튜브 임베디드 -->
+            <div class="video-container" style="margin-bottom: 60px;">
+                <div class="video-player video-link">
+                    <div class="video-badge">🔗 한예종 "면담"</div>
+                    <div class="rec-badge">단편영화</div>
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/L3uhNTBT1ls" title="면담" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h4>한예종 전문사 "면담" - 영주역 (16세)</h4>
+                    <div class="duration">2021 구로국제어린이영화제</div>
+                    <p>눈치보는, 죄책감, 가해자</p>
+                    <p>복잡한 청소년의 내면을 섬세하게 표현했습니다.</p>
+                    <a href="https://youtu.be/L3uhNTBT1ls" target="_blank" class="external-link">🔗 유튜브에서 보기</a>
+                </div>
+            </div>
+
+            <!-- Video 3 - 다운로드 가능 -->
+            <div class="video-container" style="margin-bottom: 60px;">
+                <div class="video-player video-download">
+                    <div class="video-badge">🎬 아무 잘못 없는</div>
+                    <div class="rec-badge">다운로드 가능</div>
+                    <video id="video3" poster="videos/video3-thumb.jpg" controls>
+                        <source src="videos/video3.mp4" type="video/mp4">
+                    </video>
+                    <button class="download-video-btn" onclick="downloadVideo('videos/video3.mp4')">영상 다운로드 ↓</button>
+                </div>
+                <div class="video-info">
+                    <h4>한영위 "아무 잘못 없는" - 도윤역 (16세)</h4>
+                    <div class="duration">대구다양성제작지원 & 한영위 지역영화 제작지원</div>
+                    <p>대구 사투리를 사용하는 캐릭터를 연기했습니다.</p>
+                    <p>지역 특색을 살린 자연스러운 연기를 선보였습니다.</p>
+                </div>
+            </div>
+
+            <div class="video-container" style="margin-bottom: 60px;">
+                <div class="video-player video-download">
+                    <div class="video-badge">🎬 심야괴담회</div>
+                    <div class="rec-badge">다운로드 가능</div>
+                    <video id="video3" poster="videos/video1-thumb.jpg" controls>
+                        <source src="videos/video1.mp4" type="video/mp4">
+                    </video>
+                    <button class="download-video-btn" onclick="downloadVideo('videos/video1.mp4')">영상 다운로드 ↓</button>
+                </div>
+                <div class="video-info">
+                    <h4>심야괴담회 스토커편 - 슬아역</h4>
+                    <div class="duration">MBC 심야괴담회 시즌4 1화</div>
+                    <p>공포에 사로 잡힌 재수생 역할 입니다.</p>
+                    <!-- <p>지역 특색을 살린 자연스러운 연기를 선보였습니다.</p> -->
+                </div>
+            </div>
+
+            <div class="video-container" style="margin-bottom: 60px;">
+                <div class="video-player video-download">
+                    <div class="video-badge">🎬 출연영상 모음</div>
+                    <div class="rec-badge">다운로드 가능</div>
+                    <video id="video3" poster="videos/video2-thumb.jpg" controls>
+                        <source src="videos/video2.mp4" type="video/mp4">
+                    </video>
+                    <button class="download-video-btn" onclick="downloadVideo('videos/video2.mp4')">영상 다운로드 ↓</button>
+                </div>
+                <div class="video-info">
+                    <h4>종말의 바보 | 하이쿠키 | 우리 연애 시뮬레이션 | 내일</h4>
+                    <div class="duration">MBC 내일 - 경미려역 | LG u+ 하이쿠키 s반 김윤아역<br>
+                    넷플릭스 종말의 바보 - 피해소녀역 <br>
+                    우리 연애 시뮬레이션 - 여대생역</div>
+                    <!-- <p>넷플릭스 종말의 바보 - 피해소녀역</p>
+                    <p>LG u+ 하이쿠키 김윤아역 | 우리 연애 시뮬레이션</p> -->
+                </div>
+            </div>
+
+            <!-- Video 4 - 유튜브 임베디드 -->
+            <div class="video-container" style="margin-bottom: 60px;">
+                <div class="video-player video-link">
+                    <div class="video-badge">🔗 주빈</div>
+                    <div class="rec-badge">단편영화</div>
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/wEpTMVoV9E0" title="주빈" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h4>경기영상위 "주빈" - 영주역 (16세)</h4>
+                    <div class="duration">경기 영상위 제작지원작</div>
+                    <p>날이 선, 긴장, 두려움</p>
+                    <p>극한의 감정선을 섬세하게 표현했습니다.</p>
+                    <a href="https://youtu.be/wEpTMVoV9E0" target="_blank" class="external-link">🔗 유튜브에서 보기</a>
+                </div>
+            </div>
+
+            <!-- Video 5 - 유튜브 임베디드 -->
+            <div class="video-container" style="margin-bottom: 60px;">
+                <div class="video-player video-link">
+                    <div class="video-badge">🔗 Dancing Queen</div>
+                    <div class="rec-badge">단편영화</div>
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/tiFRx3q4JiM" title="Dancing Queen" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h4>성균관대 "Dancing Queen" - 태희역 (17세)</h4>
+                    <div class="duration">주조연</div>
+                    <p>장난꾸러기 캐릭터를 연기했습니다.</p>
+                    <p>밝고 활기찬 에너지를 화면에 담았습니다.</p>
+                    <a href="https://youtu.be/tiFRx3q4JiM" target="_blank" class="external-link">🔗 유튜브에서 보기</a>
+                </div>
+            </div>
+
+            <!-- Video 6 - 유튜브 임베디드 -->
+            <div class="video-container" style="margin-bottom: 60px;">
+                <div class="video-player video-link">
+                    <div class="video-badge">🔗 로또박사 박원석</div>
+                    <div class="rec-badge">단편영화</div>
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/2VSpelR3gy4" title="로또박사 박원석" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h4>서경대 "로또박사 박원석" - 연경역 (17세)</h4>
+                    <div class="duration">주연</div>
+                    <p>사춘기 딸, 툴툴거리는 캐릭터</p>
+                    <p>청소년의 솔직한 감정을 표현했습니다.</p>
+                    <a href="https://youtu.be/2VSpelR3gy4" target="_blank" class="external-link">🔗 유튜브에서 보기</a>
+                </div>
+            </div>
+
+            <!-- Video 7 - 유튜브 임베디드 -->
+            <div class="video-container" style="margin-bottom: 60px;">
+                <div class="video-player video-link">
+                    <div class="video-badge">🔗 부산관광공사</div>
+                    <div class="rec-badge">광고</div>
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/mF_1vaW6U1g" title="부산관광공사" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h4>부산관광공사 떡볶이편 홍보영상 - 여학생역</h4>
+                    <div class="duration">Commercial</div>
+                    <p>부산의 매력을 전달하는 홍보영상입니다.</p>
+                    <p>상업광고에서의 자연스러운 연기를 보여드립니다.</p>
+                    <a href="https://youtu.be/mF_1vaW6U1g" target="_blank" class="external-link">🔗 유튜브에서 보기</a>
+                </div>
+            </div>
+
+            <!-- Video 8 - 유튜브 임베디드 -->
+            <div class="video-container" style="margin-bottom: 60px;">
+                <div class="video-player video-link">
+                    <div class="video-badge">🔗 FLO 음악어플</div>
+                    <div class="rec-badge">광고</div>
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/lJXpwPduI9M" title="FLO 음악어플" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h4>FLO 음악 어플 광고 - 서브역</h4>
+                    <div class="duration">YouTube Shorts</div>
+                    <p>음악 어플리케이션 광고에 출연했습니다.</p>
+                    <p>젊은 감성의 광고 연출에 참여했습니다.</p>
+                    <a href="https://youtube.com/shorts/lJXpwPduI9M" target="_blank" class="external-link">🔗 유튜브에서 보기</a>
+                </div>
+            </div>
+            <!-- Video 9 - 유튜브 임베디드 -->
+            <div class="video-container">
+                <div class="video-player video-link">
+                    <div class="video-badge">🔗 JTBC 브랜드송</div>
+                    <div class="rec-badge">뮤직비디오</div>
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/7Ey4jyDIEjw" title="JTBC 브랜드송" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h4>JTBC 브랜드송 뮤직비디오 - 잔나비ver</h4>
+                    <div class="duration">Music Video</div>
+                    <p>JTBC 브랜드송 뮤직비디오에 출연했습니다.</p>
+                    <p>밴드 잔나비와 함께한 특별한 경험이었습니다.</p>
+                    <a href="https://youtu.be/7Ey4jyDIEjw" target="_blank" class="external-link">🔗 유튜브에서 보기</a>
+                </div>
+            </div>
+        
+
+            <br>
+            <br>
+            <div class="video-container">
+                <div class="video-player video-link">
+                    <div class="video-badge">🔗 LG전자 엘보드차트</div>
+                    <div class="rec-badge">웹예능</div>
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/c9oFx5P3h88" title="LG전자 엘보드차트" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h4>LG전자 엘보드 차트  Z세대 고정</h4>
+                    <div class="duration">web variety show</div>
+                    <p>LG전자에서 제직하는 웹예능에 고정으로 출연했습니다.</p>
+                    <p>개그우먼 이은지님, 유튜버 혁키님과 함께 했습니다.</p>
+                    <a href="https://youtu.be/7Ey4jyDIEjw" target="_blank" class="external-link">🔗 유튜브에서 보기</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-email"><div>ddc0000@naver.com</div><div style="font-size: 14px; margin-top: 5px;"><a href="https://instagram.com/han_kiok" target="_blank" style="color: #666; text-decoration: none;">Instagram: @han_kiok</a></div></div>
+            <div class="footer-links">
+                <a href="index.html">소개</a>
+                <a href="films.html">출연영상</a>
+                <a href="experience.html">경력사항</a>
+                <a href="profile.html">프로필</a>
+            </div>
+            <div class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</div>
+        </div>
+    </footer>
+
+    <!-- Download Modal -->
+    <div class="modal" id="downloadModal">
+        <div class="modal-content">
+            <h3>프로필 다운로드</h3>
+            <div class="download-options">
+                <button class="download-btn" onclick="downloadFile('profile/han-kiock-profile.pptx')">PPT 다운로드</button>
+                <button class="download-btn" onclick="downloadFile('profile/han-kiock-profile.pdf')">PDF 다운로드</button>
+            </div>
+            <button class="close-modal" onclick="closeDownloadModal()">닫기</button>
+        </div>
+    </div>
+
+    <script>
+        function downloadVideo(videoPath) {
+            const link = document.createElement('a');
+            link.href = videoPath;
+            link.download = videoPath.split('/').pop();
+            link.click();
+        }
+
+        function downloadFile(filePath) {
+            const link = document.createElement('a');
+            link.href = filePath;
+            link.download = filePath.split('/').pop();
+            link.click();
+        }
+
+        function openDownloadModal() {
+            document.getElementById('downloadModal').classList.add('active');
+        }
+
+        function closeDownloadModal() {
+            document.getElementById('downloadModal').classList.remove('active');
+        }
+    </script>
+
+    <style>
+        /* 다운로드 가능한 영상 스타일 */
+        .video-download {
+            border: 3px solid #0066ff;
+            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.2);
+        }
+
+        /* 유튜브 링크 영상 스타일 */
+        .video-link {
+            border: 3px solid #ff0000;
+            box-shadow: 0 4px 12px rgba(255, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .youtube-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 0, 0, 0.9);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .youtube-play-btn:hover {
+            background: rgba(255, 0, 0, 1);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .play-icon {
+            font-size: 24px;
+        }
+
+        .external-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #ff0000;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        .external-link:hover {
+            opacity: 0.7;
+        }
+
+        .download-video-btn {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(0, 102, 255, 0.9);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .download-video-btn:hover {
+            background: rgba(0, 102, 255, 1);
+        }
+    </style>
+
+    <script>
+        function downloadVideo(videoPath) {
+            const link = document.createElement('a');
+            link.href = videoPath;
+            link.download = videoPath.split('/').pop();
+            link.click();
+        }
+
+        function downloadFile(filePath) {
+            const link = document.createElement('a');
+            link.href = filePath;
+            link.download = filePath.split('/').pop();
+            link.click();
+        }
+
+        function openDownloadModal() {
+            document.getElementById('downloadModal').classList.add('active');
+        }
+
+        function closeDownloadModal() {
+            document.getElementById('downloadModal').classList.remove('active');
+        }
+
+        // Mobile Menu Functions
+        function toggleMobileMenu() {
+            const headerRight = document.getElementById('headerRight');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            
+            headerRight.classList.toggle('active');
+            mobileMenuBtn.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            
+            if (headerRight.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        function closeMobileMenu() {
+            const headerRight = document.getElementById('headerRight');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            
+            headerRight.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    </script>
+</body>
+</html>

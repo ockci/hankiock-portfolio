@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Han Ki-ock 한기옥 - Actor Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a class="logo" href="index.html">Han Ki-ock</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="header-right" id="headerRight">
+                <nav>
+                    <ul>
+                        <li><a href="index.html" onclick="closeMobileMenu()">소개</a></li>
+                        <li><a href="films.html" onclick="closeMobileMenu()">출연영상</a></li>
+                        <li><a href="experience.html" onclick="closeMobileMenu()">경력사항</a></li>
+                        <li><a href="profile.html" onclick="closeMobileMenu()">프로필</a></li>
+                    </ul>
+                </nav>
+                <button class="contact-btn" onclick="openDownloadModal(); closeMobileMenu();">프로필 다운로드 ↓</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="hero/hero-main.jpg" alt="Han Ki-ock" class="hero-image" id="heroImage">
+        <div class="hero-content">
+            <h1>Han Ki-ock<br>한기옥</h1>
+            <p class="hero-subtitle">Actor & Model</p>
+        </div>
+        <div class="hero-nav">
+            <button onclick="prevHeroImage()">←</button>
+            <button onclick="nextHeroImage()">→</button>
+        </div>
+        <div class="hero-dots">
+            <span class="dot active" onclick="setHeroImage(0)"></span>
+            <span class="dot" onclick="setHeroImage(1)"></span>
+            <span class="dot" onclick="setHeroImage(2)"></span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>안녕하세요,<br>배우 한기옥입니다</h2>
+                    <p>다양한 작품을 통해 성장하고 있는 배우입니다.</p>
+                    <p>드라마, 영화, 광고, 예능 등 여러 분야에서 활동하며<br>폭넓은 연기 경험을 쌓아가고 있습니다.</p>
+                    
+                    <div class="about-info">
+                        <p><strong>프로필</strong></p>
+                        <p>한기옥 Han Ki-ock</p>
+                        <p>생년월일: 2002년 5월 16일</p>
+                        <p>신장: 162cm</p>
+                        <p>특기: 야구, 복싱</p>
+                        
+                        <p style="margin-top: 30px;"><strong>연락처</strong></p>
+                        <p>Email: ddc0000@naver.com</p>
+                        <p>Instagram: <a href="https://instagram.com/han_kiok" target="_blank" style="color: #0066ff; text-decoration: none;">@han_kiok</a></p>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="profile/profile-01.jpg" alt="Han Ki-ock Profile">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Preview Section -->
+    <section class="profile-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>프로필 사진 <span>*</span></h2>
+                <a href="profile.html" class="more-btn">더 보기 →</a>
+            </div>
+            <div class="profile-grid">
+                <div class="profile-item" onclick="downloadImage('profile/profile-01.jpg')">
+                    <img src="profile/profile-01.jpg" alt="Profile 1">
+                </div>
+                <div class="profile-item" onclick="downloadImage('profile/profile-02.jpg')">
+                    <img src="profile/profile-02.jpg" alt="Profile 2">
+                </div>
+                <div class="profile-item" onclick="downloadImage('profile/profile-03.jpg')">
+                    <img src="profile/profile-03.jpg" alt="Profile 3">
+                </div>
+                <div class="profile-item" onclick="downloadImage('profile/profile-04.jpg')">
+                    <img src="profile/profile-04.jpg" alt="Profile 4">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Still Cut Preview Section -->
+    <section class="stillcut-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>스틸컷 <span>*</span></h2>
+                <a href="stillcut.html" class="more-btn">더 보기 →</a>
+            </div>
+            <p class="stillcut-description">다양한 작품의 스틸컷 사진들을 모았습니다.<br>사진을 클릭하시면 다운로드가 가능합니다.</p>
+            <div class="stillcut-grid">
+                <div class="stillcut-item" onclick="downloadImage('stillcut/doyun-01.jpg')">
+                    <img src="stillcut/doyun-01.jpg" alt="스틸컷 1">
+                    <div class="stillcut-caption">단편 "아무 잘못 없는" &lt;도윤역&gt;</div>
+                </div>
+                <div class="stillcut-item" onclick="downloadImage('stillcut/film-a-02.jpg')">
+                    <img src="stillcut/film-a-02.jpg" alt="스틸컷 2">
+                    <div class="stillcut-caption">단편 "주빈" &lt;영주역&gt;</div>
+                </div>
+                <div class="stillcut-item" onclick="downloadImage('stillcut/ad-01.jpg')">
+                    <img src="stillcut/ad-01.jpg" alt="스틸컷 3">
+                    <div class="stillcut-caption">FLO 음악어플광고 &lt;서브&gt;</div>
+                </div>
+                <!-- <div class="stillcut-item" onclick="downloadImage('stillcut/still-04.jpg')">
+                    <img src="stillcut/still-04.jpg" alt="스틸컷 4">
+                    <div class="stillcut-caption">작품명</div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-left">
+                    <h4>CONTACT</h4>
+                    <h2>함께 작업하고 싶으시다면<br>언제든 연락주세요</h2>
+                </div>
+                <div class="contact-right">
+                    <a href="mailto:ddc0000@naver.com" class="contact-link">
+                        <span>ddc0000@naver.com</span>
+                        <span>→</span>
+                    </a>
+                    <a href="https://instagram.com/han_kiok" target="_blank" class="contact-link" style="margin-top: 15px;">
+                        <span>Instagram: @han_kiok</span>
+                        <span>→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-email">
+                <div>ddc0000@naver.com</div>
+                <div style="font-size: 14px; margin-top: 5px;">
+                    <a href="https://instagram.com/han_kiok" target="_blank" style="color: #666; text-decoration: none;">Instagram: @han_kiok</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">소개</a>
+                <a href="films.html">출연영상</a>
+                <a href="experience.html">경력사항</a>
+                <a href="profile.html">프로필</a>
+            </div>
+            <div class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</div>
+        </div>
+    </footer>
+
+    <!-- Download Modal -->
+    <div class="modal" id="downloadModal">
+        <div class="modal-content">
+            <h3>프로필 다운로드</h3>
+            <div class="download-options">
+                <button class="download-btn" onclick="downloadFile('profile/han-kiock-profile.pptx')">PPT 다운로드</button>
+                <button class="download-btn" onclick="downloadFile('profile/han-kiock-profile.pdf')">PDF 다운로드</button>
+            </div>
+            <button class="close-modal" onclick="closeDownloadModal()">닫기</button>
+        </div>
+    </div>
+
+    <script>
+        // Hero Image Carousel
+        const heroImages = [
+            'hero/hero-main.jpg',
+            'hero/hero-02.jpg',
+            'hero/hero-03.jpg'
+        ];
+        let currentHeroIndex = 0;
+
+        function setHeroImage(index) {
+            currentHeroIndex = index;
+            document.getElementById('heroImage').src = heroImages[index];
+            document.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextHeroImage() {
+            currentHeroIndex = (currentHeroIndex + 1) % heroImages.length;
+            setHeroImage(currentHeroIndex);
+        }
+
+        function prevHeroImage() {
+            currentHeroIndex = (currentHeroIndex - 1 + heroImages.length) % heroImages.length;
+            setHeroImage(currentHeroIndex);
+        }
+
+        // Download Functions
+        function downloadImage(imagePath) {
+            const link = document.createElement('a');
+            link.href = imagePath;
+            link.download = imagePath.split('/').pop();
+            link.click();
+        }
+
+        function downloadFile(filePath) {
+            const link = document.createElement('a');
+            link.href = filePath;
+            link.download = filePath.split('/').pop();
+            link.click();
+        }
+
+        // Modal Functions
+        function openDownloadModal() {
+            document.getElementById('downloadModal').classList.add('active');
+        }
+
+        function closeDownloadModal() {
+            document.getElementById('downloadModal').classList.remove('active');
+        }
+
+        // Mobile Menu Functions
+        function toggleMobileMenu() {
+            const headerRight = document.getElementById('headerRight');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            
+            headerRight.classList.toggle('active');
+            mobileMenuBtn.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            if (headerRight.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        function closeMobileMenu() {
+            const headerRight = document.getElementById('headerRight');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            
+            headerRight.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Touch swipe support for hero carousel
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        const heroElement = document.querySelector('.hero');
+        
+        heroElement.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        
+        heroElement.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+        
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextHeroImage();
+            }
+            if (touchEndX > touchStartX + 50) {
+                prevHeroImage();
+            }
+        }
+    </script>
+    <script src="scripts/index.js"></script>
+</body>
+</html>

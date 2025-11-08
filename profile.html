@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로필 - Han Ki-ock 한기옥</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a class="logo" href="index.html">Han Ki-ock</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="header-right" id="headerRight">
+                <nav>
+                    <ul>
+                        <li><a href="index.html" onclick="closeMobileMenu()">소개</a></li>
+                        <li><a href="films.html" onclick="closeMobileMenu()">출연영상</a></li>
+                        <li><a href="experience.html" onclick="closeMobileMenu()">경력사항</a></li>
+                        <li><a href="profile.html" onclick="closeMobileMenu()">프로필</a></li>
+                    </ul>
+                </nav>
+                <button class="contact-btn" onclick="openDownloadModal(); closeMobileMenu();">프로필 다운로드 ↓</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Profile Section -->
+    <section class="profile-section" style="margin-top: 100px; padding: 50px 20px 100px;">
+        <div class="container">
+            <div class="section-header">
+                <h2>프로필 사진 <span>*</span></h2>
+            </div>
+            <p style="text-align: center; margin-bottom: 40px; color: #666;">사진을 클릭하시면 다운로드가 가능합니다.</p>
+            <div class="profile-grid-full">
+                <div class="profile-item" onclick="downloadImage('profile/profile-01.jpg')">
+                    <img src="profile/profile-01.jpg" alt="Profile 1">
+                </div>
+                <div class="profile-item" onclick="downloadImage('profile/profile-02.jpg')">
+                    <img src="profile/profile-02.jpg" alt="Profile 2">
+                </div>
+                <div class="profile-item" onclick="downloadImage('profile/profile-03.jpg')">
+                    <img src="profile/profile-03.jpg" alt="Profile 3">
+                </div>
+                <div class="profile-item" onclick="downloadImage('profile/profile-04.jpg')">
+                    <img src="profile/profile-04.jpg" alt="Profile 4">
+                </div>
+                <div class="profile-item" onclick="downloadImage('profile/profile-05.jpg')">
+                    <img src="profile/profile-05.jpg" alt="Profile 5">
+                </div>
+                <div class="profile-item" onclick="downloadImage('profile/profile-06.jpg')">
+                    <img src="profile/profile-06.jpg" alt="Profile 6">
+                </div>
+                <div class="profile-item" onclick="downloadImage('profile/profile-07.jpg')">
+                    <img src="profile/profile-07.jpg" alt="Profile 7">
+                </div>
+                <div class="profile-item" onclick="downloadImage('profile/profile-08.jpg')">
+                    <img src="profile/profile-08.jpg" alt="Profile 8">
+                </div>
+                <div class="profile-item" onclick="downloadImage('profile/profile-09.jpg')">
+                    <img src="profile/profile-09.jpg" alt="Profile 9">
+                </div>
+                <div class="profile-item" onclick="downloadImage('profile/profile-10.jpg')">
+                    <img src="profile/profile-10.jpg" alt="Profile 10">
+                </div>
+                <div class="profile-item" onclick="downloadImage('profile/profile-11.jpg')">
+                    <img src="profile/profile-11.jpg" alt="Profile 11">
+                </div>
+                <div class="profile-item" onclick="downloadImage('profile/profile-12.jpg')">
+                    <img src="profile/profile-12.jpg" alt="Profile 12">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-email"><div>ddc0000@naver.com</div><div style="font-size: 14px; margin-top: 5px;"><a href="https://instagram.com/han_kiok" target="_blank" style="color: #666; text-decoration: none;">Instagram: @han_kiok</a></div></div>
+            <div class="footer-links">
+                <a href="index.html">소개</a>
+                <a href="films.html">출연영상</a>
+                <a href="experience.html">경력사항</a>
+                <a href="profile.html">프로필</a>
+            </div>
+            <div class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</div>
+        </div>
+    </footer>
+
+    <!-- Download Modal -->
+    <div class="modal" id="downloadModal">
+        <div class="modal-content">
+            <h3>프로필 다운로드</h3>
+            <div class="download-options">
+                <button class="download-btn" onclick="downloadFile('profile/han-kiock-profile.pptx')">PPT 다운로드</button>
+                <button class="download-btn" onclick="downloadFile('profile/han-kiock-profile.pdf')">PDF 다운로드</button>
+            </div>
+            <button class="close-modal" onclick="closeDownloadModal()">닫기</button>
+        </div>
+    </div>
+
+    <script>
+        function downloadImage(imagePath) {
+            const link = document.createElement('a');
+            link.href = imagePath;
+            link.download = imagePath.split('/').pop();
+            link.click();
+        }
+
+        function downloadFile(filePath) {
+            const link = document.createElement('a');
+            link.href = filePath;
+            link.download = filePath.split('/').pop();
+            link.click();
+        }
+
+        function openDownloadModal() {
+            document.getElementById('downloadModal').classList.add('active');
+        }
+
+        function closeDownloadModal() {
+            document.getElementById('downloadModal').classList.remove('active');
+        }
+
+        // Mobile Menu Functions
+        function toggleMobileMenu() {
+            const headerRight = document.getElementById('headerRight');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            
+            headerRight.classList.toggle('active');
+            mobileMenuBtn.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            
+            if (headerRight.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        function closeMobileMenu() {
+            const headerRight = document.getElementById('headerRight');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            
+            headerRight.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    </script>
+    <script src="scripts/profile.js"></script>
+</body>
+</html>

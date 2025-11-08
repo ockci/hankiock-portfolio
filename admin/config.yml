@@ -1,0 +1,84 @@
+backend:
+  name: github
+  repo: your-username/your-repo-name
+  branch: main
+
+media_folder: "uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "index"
+    label: "메인 페이지"
+    folder: "data/index"
+    format: "json"
+    create: true
+    slug: "main"
+    fields:
+      - { label: "메인 제목", name: "title", widget: "string" }
+      - { label: "소개 문구", name: "intro", widget: "text" }
+      - { label: "대표 이미지", name: "hero_image", widget: "image" }
+
+  - name: "experience"
+    label: "경력사항"
+    folder: "data/experience"
+    format: "json"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "회사명 / 프로젝트명", name: "company", widget: "string" }
+      - { label: "기간", name: "period", widget: "string" }
+      - { label: "설명", name: "description", widget: "markdown" }
+      - { label: "이미지", name: "image", widget: "image", required: false }
+
+  - name: "profile"
+    label: "프로필"
+    folder: "data/profile"
+    format: "json"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "프로필 사진", name: "photo", widget: "image" }
+      - { label: "소개글", name: "bio", widget: "markdown" }
+
+  - name: "films"
+    label: "출연 영상"
+    folder: "data/films"
+    format: "json"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "영상 제목", name: "title", widget: "string" }
+      - { label: "유형", name: "type", widget: "select", options: ["유튜브", "다운로드 가능"], default: "유튜브" }
+      - { label: "영상 링크 / 파일경로", name: "video", widget: "string" }
+      - { label: "썸네일", name: "thumbnail", widget: "image", required: false }
+      - { label: "대표 배지", name: "badge", widget: "string", required: false }
+      - { label: "보조 배지", name: "sub_badge", widget: "string", required: false }
+      - { label: "설명 제목", name: "caption_title", widget: "string" }
+      - { label: "세부 설명", name: "description", widget: "text" }
+
+  - name: "stillcut"
+    label: "스틸컷"
+    folder: "data/stillcut"
+    format: "json"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "작품 제목", name: "title", widget: "string" }
+      - { label: "역할", name: "role", widget: "string", required: false }
+      - { label: "카테고리", name: "category", widget: "select", options: ["단편영화", "광고", "현장사진"], default: "단편영화" }
+      - { label: "설명", name: "description", widget: "text" }
+      - label: "이미지 리스트"
+        name: "images"
+        widget: "list"
+        fields:
+          - { label: "이미지", name: "image", widget: "image" }
+          - { label: "캡션", name: "caption", widget: "string", required: false }
+
+  - name: "files"
+    label: "프로필 파일 (PPT/PDF)"
+    folder: "profile"
+    format: "json"
+    create: false
+    fields:
+      - { label: "PPT 파일", name: "pptx", widget: "file", default: "profile/han-kiock-profile.pptx" }
+      - { label: "PDF 파일", name: "pdf", widget: "file", default: "profile/han-kiock-profile.pdf" }

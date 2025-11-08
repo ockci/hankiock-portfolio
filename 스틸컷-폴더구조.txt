@@ -1,0 +1,89 @@
+📁 스틸컷 폴더 구조 안내
+
+stillcut/ 폴더에 다음과 같이 이미지를 넣어주세요:
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📂 작품별 스틸컷 (슬라이더로 보여짐)
+
+1. MBC 스타다큐마이웨이 <청년들> (4장)
+   - mbc-chungnyeon-01.jpg
+   - mbc-chungnyeon-02.jpg
+   - mbc-chungnyeon-03.jpg
+   - mbc-chungnyeon-04.jpg
+
+2. 단편영화 <A> (3장)
+   - film-a-01.jpg
+   - film-a-02.jpg
+   - film-a-03.jpg
+
+3. 웹드라마 <우리 연애 시뮬레이션> (5장)
+   - webdrama-01.jpg
+   - webdrama-02.jpg
+   - webdrama-03.jpg
+   - webdrama-04.jpg
+   - webdrama-05.jpg
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📂 현장 사진 (Behind the Scenes) (6장)
+
+   - bts-01.jpg  (MBC 스타다큐마이웨이 촬영 현장)
+   - bts-02.jpg  (단편영화 A 촬영 현장)
+   - bts-03.jpg  (웹드라마 촬영 중)
+   - bts-04.jpg  (리허설 중)
+   - bts-05.jpg  (스태프들과 함께)
+   - bts-06.jpg  (촬영 준비 중)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✨ 주요 기능
+
+✅ 작품별 갤러리 슬라이더
+   - 좌우 화살표로 사진 전환
+   - 하단 도트로 직접 이동
+   - 키보드 방향키 지원
+   - 모바일 스와이프 지원
+
+✅ 개별 다운로드
+   - 우측 상단 버튼으로 현재 보는 사진 다운로드
+
+✅ 현장 사진 섹션
+   - 그리드 레이아웃
+   - 클릭하여 다운로드
+
+✅ 완전 반응형
+   - 데스크톱: 갤러리 600px 높이
+   - 태블릿: 갤러리 400px 높이
+   - 모바일: 갤러리 300px 높이
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💡 작품 추가 방법
+
+stillcut.html 파일에서 다음 형식으로 추가:
+
+<div class="project-gallery">
+    <h3 class="project-title">작품명</h3>
+    <p class="project-info">연도 | 장르</p>
+    <div class="gallery-slider" id="gallery4">
+        <button class="download-gallery-btn" onclick="downloadCurrentImage('gallery4')">현재 사진 다운로드 ↓</button>
+        <div class="gallery-slides">
+            <div class="gallery-slide"><img src="stillcut/작품명-01.jpg" alt="작품명 1"></div>
+            <div class="gallery-slide"><img src="stillcut/작품명-02.jpg" alt="작품명 2"></div>
+            <!-- 사진 개수만큼 추가 -->
+        </div>
+        <div class="gallery-nav">
+            <button onclick="prevSlide('gallery4')">←</button>
+            <button onclick="nextSlide('gallery4')">→</button>
+        </div>
+        <div class="gallery-counter"><span class="current">1</span> / <span class="total">사진개수</span></div>
+        <div class="gallery-dots">
+            <span class="gallery-dot active" onclick="goToSlide('gallery4', 0)"></span>
+            <span class="gallery-dot" onclick="goToSlide('gallery4', 1)"></span>
+            <!-- 사진 개수만큼 dot 추가 -->
+        </div>
+    </div>
+</div>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

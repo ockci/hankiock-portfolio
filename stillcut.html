@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스틸컷 - Han Ki-ock 한기옥</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Project Gallery Styles */
+        .project-gallery {
+            margin-bottom: 80px;
+        }
+
+        .project-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        .project-info {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .gallery-slider {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .gallery-slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .gallery-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .gallery-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 10;
+        }
+
+        .gallery-nav button {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #000;
+        }
+
+        .gallery-nav button:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.1);
+        }
+
+        .gallery-counter {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            z-index: 10;
+        }
+
+        .gallery-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .gallery-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .gallery-dot.active {
+            background: rgba(255, 255, 255, 1);
+            width: 30px;
+            border-radius: 5px;
+        }
+
+        .download-gallery-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 102, 255, 0.9);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 10;
+            transition: all 0.3s;
+        }
+
+        .download-gallery-btn:hover {
+            background: rgba(0, 102, 255, 1);
+            transform: scale(1.05);
+        }
+
+        /* Behind the Scenes Section */
+        .bts-section {
+            margin-top: 100px;
+            padding: 80px 0;
+            background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+        }
+
+        .bts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .bts-item {
+            position: relative;
+            aspect-ratio: 4/3;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .bts-item:hover {
+            transform: scale(1.05);
+        }
+
+        .bts-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .bts-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 30px 20px 15px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 968px) {
+            .gallery-slider {
+                height: 400px;
+            }
+
+            .bts-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .project-title {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .gallery-slider {
+                height: 300px;
+            }
+
+            .bts-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .gallery-nav button {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a class="logo" href="index.html">Han Ki-ock</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="header-right" id="headerRight">
+                <nav>
+                    <ul>
+                        <li><a href="index.html" onclick="closeMobileMenu()">소개</a></li>
+                        <li><a href="films.html" onclick="closeMobileMenu()">출연영상</a></li>
+                        <li><a href="experience.html" onclick="closeMobileMenu()">경력사항</a></li>
+                        <li><a href="profile.html" onclick="closeMobileMenu()">프로필</a></li>
+                    </ul>
+                </nav>
+                <button class="contact-btn" onclick="openDownloadModal(); closeMobileMenu();">프로필 다운로드 ↓</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stillcut Section -->
+    <section class="stillcut-section" style="margin-top: 100px; padding: 50px 20px 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2>스틸컷 <span>*</span></h2>
+            </div>
+            <p class="stillcut-description" style="margin-bottom: 60px;">
+                작품별 스틸컷 갤러리입니다. 화살표를 클릭하거나 드래그하여 사진을 넘겨보세요.
+            </p>
+
+            <!-- Project 1: MBC 스타다큐마이웨이 청년들 -->
+            <div class="project-gallery">
+                <h3 class="project-title">단편 "아무 잘못 없는" &lt;도윤역&gt;</h3>
+                <p class="project-info">2022 | Short Film</p>
+                <div class="gallery-slider" id="gallery1">
+                    <button class="download-gallery-btn" onclick="downloadCurrentImage('gallery1')">현재 사진 다운로드 ↓</button>
+                    <div class="gallery-slides">
+                        <div class="gallery-slide"><img src="stillcut/doyun-01.jpg" alt="도윤 1"></div>
+                        <div class="gallery-slide"><img src="stillcut/doyun-02.jpg" alt="도윤 2"></div>
+                        <div class="gallery-slide"><img src="stillcut/doyun-03.jpg" alt="도윤 3"></div>
+                        <div class="gallery-slide"><img src="stillcut/doyun-04.jpg" alt="도윤 4"></div>
+                        <div class="gallery-slide"><img src="stillcut/doyun-05.jpg" alt="도윤 4"></div>
+                        <div class="gallery-slide"><img src="stillcut/doyun-06.jpg" alt="도윤 4"></div>
+                    </div>
+                    <div class="gallery-nav">
+                        <button onclick="prevSlide('gallery1')">←</button>
+                        <button onclick="nextSlide('gallery1')">→</button>
+                    </div>
+                    <div class="gallery-counter"><span class="current">1</span> / <span class="total">6</span></div>
+                    <div class="gallery-dots">
+                        <span class="gallery-dot active" onclick="goToSlide('gallery1', 0)"></span>
+                        <span class="gallery-dot" onclick="goToSlide('gallery1', 1)"></span>
+                        <span class="gallery-dot" onclick="goToSlide('gallery1', 2)"></span>
+                        <span class="gallery-dot" onclick="goToSlide('gallery1', 3)"></span>
+                        <span class="gallery-dot" onclick="goToSlide('gallery1', 4)"></span>
+                        <span class="gallery-dot" onclick="goToSlide('gallery1', 5)"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: 단편영화 A -->
+            <div class="project-gallery">
+                <h3 class="project-title">단편영화 "주빈" &lt;영주역&gt;</h3>
+                <p class="project-info">2020 | Short Film</p>
+                <div class="gallery-slider" id="gallery2">
+                    <button class="download-gallery-btn" onclick="downloadCurrentImage('gallery2')">현재 사진 다운로드 ↓</button>
+                    <div class="gallery-slides">
+                        <div class="gallery-slide"><img src="stillcut/film-a-01.jpg" alt="영주 1"></div>
+                        <div class="gallery-slide"><img src="stillcut/film-a-02.jpg" alt="영주 2"></div>
+                        <div class="gallery-slide"><img src="stillcut/film-a-03.jpg" alt="영주 3"></div>
+                        <div class="gallery-slide"><img src="stillcut/film-a-04.jpg" alt="영주 4"></div>
+                    </div>
+                    <div class="gallery-nav">
+                        <button onclick="prevSlide('gallery2')">←</button>
+                        <button onclick="nextSlide('gallery2')">→</button>
+                    </div>
+                    <div class="gallery-counter"><span class="current">1</span> / <span class="total">4</span></div>
+                    <div class="gallery-dots">
+                        <span class="gallery-dot active" onclick="goToSlide('gallery2', 0)"></span>
+                        <span class="gallery-dot" onclick="goToSlide('gallery2', 1)"></span>
+                        <span class="gallery-dot" onclick="goToSlide('gallery2', 2)"></span>
+                        <span class="gallery-dot" onclick="goToSlide('gallery2', 3)"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: 웹드라마 -->
+            <div class="project-gallery">
+                <h3 class="project-title">단편영화 "숨" &lt;은아역&gt;</h3>
+                <p class="project-info">2020 | Short Film</p>
+                <div class="gallery-slider" id="gallery3">
+                    <button class="download-gallery-btn" onclick="downloadCurrentImage('gallery3')">현재 사진 다운로드 ↓</button>
+                    <div class="gallery-slides">
+                        <div class="gallery-slide"><img src="stillcut/sum-01.jpg" alt="은아 1"></div>
+                        <div class="gallery-slide"><img src="stillcut/sum-02.jpg" alt="은아 2"></div>
+                        <div class="gallery-slide"><img src="stillcut/sum-03.jpg" alt="은아 3"></div>
+                        <div class="gallery-slide"><img src="stillcut/sum-04.jpg" alt="은아 4"></div>
+                        <div class="gallery-slide"><img src="stillcut/sum-05.jpg" alt="은아 5"></div>
+                    </div>
+                    <div class="gallery-nav">
+                        <button onclick="prevSlide('gallery3')">←</button>
+                        <button onclick="nextSlide('gallery3')">→</button>
+                    </div>
+                    <div class="gallery-counter"><span class="current">1</span> / <span class="total">5</span></div>
+                    <div class="gallery-dots">
+                        <span class="gallery-dot active" onclick="goToSlide('gallery3', 0)"></span>
+                        <span class="gallery-dot" onclick="goToSlide('gallery3', 1)"></span>
+                        <span class="gallery-dot" onclick="goToSlide('gallery3', 2)"></span>
+                        <span class="gallery-dot" onclick="goToSlide('gallery3', 3)"></span>
+                        <span class="gallery-dot" onclick="goToSlide('gallery3', 4)"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4: 광고 -->
+            <div class="project-gallery">
+                <h3 class="project-title">광고 &lt;스틸컷&gt;</h3>
+                <p class="project-info">2020-2024 | AD</p>
+                <div class="gallery-slider" id="gallery4">
+                    <button class="download-gallery-btn" onclick="downloadCurrentImage('gallery4')">현재 사진 다운로드 ↓</button>
+                    <div class="gallery-slides">
+                        <div class="gallery-slide"><img src="stillcut/ad-01.jpg" alt="광고 1"></div>
+                        <div class="gallery-slide"><img src="stillcut/ad-02.jpg" alt="광고 2"></div>
+                        <div class="gallery-slide"><img src="stillcut/ad-03.jpg" alt="광고 3"></div>
+                        <div class="gallery-slide"><img src="stillcut/ad-04.jpg" alt="광고 4"></div>
+                        <div class="gallery-slide"><img src="stillcut/ad-05.jpg" alt="광고 5"></div>
+                        <div class="gallery-slide"><img src="stillcut/ad-06.jpg" alt="광고 6"></div>
+                        <div class="gallery-slide"><img src="stillcut/ad-07.jpg" alt="광고 7"></div>
+                        <div class="gallery-slide"><img src="stillcut/ad-08.jpg" alt="광고 8"></div>
+                    </div>
+                    <div class="gallery-nav">
+                        <button onclick="prevSlide('gallery4')">←</button>
+                        <button onclick="nextSlide('gallery4')">→</button>
+                    </div>
+                    <div class="gallery-counter"><span class="current">1</span> / <span class="total">8</span></div>
+                    <div class="gallery-dots">
+                        <span class="gallery-dot active" onclick="goToSlide('gallery4', 0)"></span>
+                        <span class="gallery-dot" onclick="goToSlide('gallery4', 1)"></span>
+                        <span class="gallery-dot" onclick="goToSlide('gallery4', 2)"></span>
+                        <span class="gallery-dot" onclick="goToSlide('gallery4', 3)"></span>
+                        <span class="gallery-dot" onclick="goToSlide('gallery4', 4)"></span>
+                        <span class="gallery-dot" onclick="goToSlide('gallery4', 5)"></span>
+                        <span class="gallery-dot" onclick="goToSlide('gallery4', 6)"></span>
+                        <span class="gallery-dot" onclick="goToSlide('gallery4', 7)"></span>
+                    </div>
+                </div>
+            </div>
+
+
+                <!-- Project 5: 광고 -->
+            <div class="project-gallery">
+                <h3 class="project-title">한국교육개발원 온라인수업 홍보영상 &lt;메인&gt;</h3>
+                <p class="project-info">2020 | AD</p>
+                <div class="gallery-slider" id="gallery5">
+                    <button class="download-gallery-btn" onclick="downloadCurrentImage('gallery5')">현재 사진 다운로드 ↓</button>
+                    <div class="gallery-slides">
+                        <div class="gallery-slide"><img src="stillcut/add-01.jpg" alt="한국교육개발원 1"></div>
+                        <div class="gallery-slide"><img src="stillcut/add-02.jpg" alt="한국교육개발원 2"></div>
+                        <div class="gallery-slide"><img src="stillcut/add-03.jpg" alt="한국교육개발원 3"></div>
+                        <div class="gallery-slide"><img src="stillcut/add-04.jpg" alt="한국교육개발원 4"></div>
+                    </div>
+                    <div class="gallery-nav">
+                        <button onclick="prevSlide('gallery5')">←</button>
+                        <button onclick="nextSlide('gallery5')">→</button>
+                    </div>
+                    <div class="gallery-counter"><span class="current">1</span> / <span class="total">4</span></div>
+                    <div class="gallery-dots">
+                        <span class="gallery-dot active" onclick="goToSlide('gallery5', 0)"></span>
+                        <span class="gallery-dot" onclick="goToSlide('gallery5', 1)"></span>
+                        <span class="gallery-dot" onclick="goToSlide('gallery5', 2)"></span>
+                        <span class="gallery-dot" onclick="goToSlide('gallery5', 3)"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Behind the Scenes Section -->
+    <section class="bts-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>현장 사진 <span>*</span></h2>
+            </div>
+            <p style="text-align: center; margin-bottom: 20px; color: #666;">
+                촬영 현장의 생생한 순간들을 담았습니다.
+            </p>
+            <div class="bts-grid">
+                <div class="bts-item" onclick="downloadImage('stillcut/bts-01.jpg')">
+                    <img src="stillcut/bts-01.jpg" alt="현장사진 1">
+                    <div class="bts-caption">아지트 촬영 현장</div>
+                </div>
+                <div class="bts-item" onclick="downloadImage('stillcut/bts-02.jpg')">
+                    <img src="stillcut/bts-02.jpg" alt="현장사진 2">
+                    <div class="bts-caption">대성마이맥 광고 촬영 현장</div>
+                </div>
+                <div class="bts-item" onclick="downloadImage('stillcut/bts-03.jpg')">
+                    <img src="stillcut/bts-03.jpg" alt="현장사진 3">
+                    <div class="bts-caption">장편영화 너와나 촬영 현장</div>
+                </div>
+                <div class="bts-item" onclick="downloadImage('stillcut/bts-04.jpg')">
+                    <img src="stillcut/bts-04.jpg" alt="현장사진 4">
+                    <div class="bts-caption">아무 잘못 없는 촬영 현장</div>
+                </div>
+                <div class="bts-item" onclick="downloadImage('stillcut/bts-05.jpg')">
+                    <img src="stillcut/bts-05.jpg" alt="현장사진 5">
+                    <div class="bts-caption">한국영화아카데미 스탭분들과 함께</div>
+                </div>
+                <div class="bts-item" onclick="downloadImage('stillcut/bts-06.jpg')">
+                    <img src="stillcut/bts-06.jpg" alt="현장사진 6">
+                    <div class="bts-caption">영화 주빈 촬영 중</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-email"><div>ddc0000@naver.com</div><div style="font-size: 14px; margin-top: 5px;"><a href="https://instagram.com/han_kiok" target="_blank" style="color: #666; text-decoration: none;">Instagram: @han_kiok</a></div></div>
+            <div class="footer-links">
+                <a href="index.html">소개</a>
+                <a href="films.html">출연영상</a>
+                <a href="experience.html">경력사항</a>
+                <a href="profile.html">프로필</a>
+            </div>
+            <div class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</div>
+        </div>
+    </footer>
+
+    <!-- Download Modal -->
+    <div class="modal" id="downloadModal">
+        <div class="modal-content">
+            <h3>프로필 다운로드</h3>
+            <div class="download-options">
+                <button class="download-btn" onclick="downloadFile('profile/han-kiock-profile.pptx')">PPT 다운로드</button>
+                <button class="download-btn" onclick="downloadFile('profile/han-kiock-profile.pdf')">PDF 다운로드</button>
+            </div>
+            <button class="close-modal" onclick="closeDownloadModal()">닫기</button>
+        </div>
+    </div>
+
+    <script>
+        // Gallery state management
+        const galleries = {};
+
+        // Initialize all galleries
+        document.querySelectorAll('.gallery-slider').forEach(gallery => {
+            const id = gallery.id;
+            galleries[id] = {
+                currentIndex: 0,
+                totalSlides: gallery.querySelectorAll('.gallery-slide').length
+            };
+            updateGalleryDisplay(id);
+        });
+
+        function nextSlide(galleryId) {
+            const gallery = galleries[galleryId];
+            gallery.currentIndex = (gallery.currentIndex + 1) % gallery.totalSlides;
+            updateGalleryDisplay(galleryId);
+        }
+
+        function prevSlide(galleryId) {
+            const gallery = galleries[galleryId];
+            gallery.currentIndex = (gallery.currentIndex - 1 + gallery.totalSlides) % gallery.totalSlides;
+            updateGalleryDisplay(galleryId);
+        }
+
+        function goToSlide(galleryId, index) {
+            galleries[galleryId].currentIndex = index;
+            updateGalleryDisplay(galleryId);
+        }
+
+        function updateGalleryDisplay(galleryId) {
+            const gallery = galleries[galleryId];
+            const galleryElement = document.getElementById(galleryId);
+            const slides = galleryElement.querySelector('.gallery-slides');
+            const dots = galleryElement.querySelectorAll('.gallery-dot');
+            const counter = galleryElement.querySelector('.gallery-counter .current');
+
+            // Update slides position
+            slides.style.transform = `translateX(-${gallery.currentIndex * 100}%)`;
+
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === gallery.currentIndex);
+            });
+
+            // Update counter
+            counter.textContent = gallery.currentIndex + 1;
+        }
+
+        function downloadCurrentImage(galleryId) {
+            const gallery = galleries[galleryId];
+            const galleryElement = document.getElementById(galleryId);
+            const currentSlide = galleryElement.querySelectorAll('.gallery-slide')[gallery.currentIndex];
+            const img = currentSlide.querySelector('img');
+            
+            const link = document.createElement('a');
+            link.href = img.src;
+            link.download = img.src.split('/').pop();
+            link.click();
+        }
+
+        function downloadImage(imagePath) {
+            const link = document.createElement('a');
+            link.href = imagePath;
+            link.download = imagePath.split('/').pop();
+            link.click();
+        }
+
+        function downloadFile(filePath) {
+            const link = document.createElement('a');
+            link.href = filePath;
+            link.download = filePath.split('/').pop();
+            link.click();
+        }
+
+        function openDownloadModal() {
+            document.getElementById('downloadModal').classList.add('active');
+        }
+
+        function closeDownloadModal() {
+            document.getElementById('downloadModal').classList.remove('active');
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                Object.keys(galleries).forEach(id => prevSlide(id));
+            } else if (e.key === 'ArrowRight') {
+                Object.keys(galleries).forEach(id => nextSlide(id));
+            }
+        });
+
+        // Touch swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.querySelectorAll('.gallery-slider').forEach(gallery => {
+            gallery.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            gallery.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe(gallery.id);
+            });
+        });
+
+        function handleSwipe(galleryId) {
+            if (touchEndX < touchStartX - 50) nextSlide(galleryId);
+            if (touchEndX > touchStartX + 50) prevSlide(galleryId);
+        }
+
+        // Mobile Menu Functions
+        function toggleMobileMenu() {
+            const headerRight = document.getElementById('headerRight');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            
+            headerRight.classList.toggle('active');
+            mobileMenuBtn.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            
+            if (headerRight.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        function closeMobileMenu() {
+            const headerRight = document.getElementById('headerRight');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            
+            headerRight.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    </script>
+    <script src="scripts/stillcut.js"></script>
+</body>
+</html>
